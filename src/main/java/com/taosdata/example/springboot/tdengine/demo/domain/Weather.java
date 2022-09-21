@@ -63,4 +63,15 @@ public class Weather {
     public void setGroupId(int groupId) {
         this.groupId = groupId;
     }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "ts=" + ts +
+                ", temperature=" + temperature +
+                ", humidity=" + humidity +
+                ", location='" + location + '\'' +
+                ", groupId=" + groupId +
+                '}';
+    }
 }

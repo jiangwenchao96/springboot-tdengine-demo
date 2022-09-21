@@ -1,7 +1,7 @@
-package com.taosdata.example.springboot.tdengine.demo.controller;
+package com.econ.springboot.tdengine.demo.mybatis.controller;
 
-import com.taosdata.example.springboot.tdengine.demo.domain.Weather;
-import com.taosdata.example.springboot.tdengine.demo.service.WeatherService;
+import com.econ.springboot.tdengine.demo.mybatis.domain.Weather;
+import com.econ.springboot.tdengine.demo.mybatis.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

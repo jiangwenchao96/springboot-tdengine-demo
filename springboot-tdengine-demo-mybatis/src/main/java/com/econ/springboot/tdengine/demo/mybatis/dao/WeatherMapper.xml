@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.taosdata.example.springboot.tdengine.demo.dao.WeatherMapper">
+<mapper namespace="com.econ.springboot.tdengine.demo.mybatis.dao.WeatherMapper">
 
-    <resultMap id="BaseResultMap" type="com.taosdata.example.springboot.tdengine.demo.domain.Weather">
+    <resultMap id="BaseResultMap" type="com.econ.springboot.tdengine.demo.mybatis.domain.Weather">
         <id column="ts" jdbcType="TIMESTAMP" property="ts"/>
         <result column="temperature" jdbcType="FLOAT" property="temperature"/>
         <result column="humidity" jdbcType="FLOAT" property="humidity"/>
@@ -25,7 +25,7 @@
         create table if not exists demo.weather(ts timestamp, temperature float, humidity float) tags(location nchar(64), groupId int)
     </update>
 
-    <update id="createTable" parameterType="com.taosdata.example.springboot.tdengine.demo.domain.Weather">
+    <update id="createTable" parameterType="com.econ.springboot.tdengine.demo.mybatis.domain.Weather">
         create table if not exists demo.t#{groupId} using demo.weather tags(#{location}, #{groupId})
     </update>
 
@@ -41,7 +41,7 @@
         </if>
     </select>
 
-    <insert id="insert" parameterType="com.taosdata.example.springboot.tdengine.demo.domain.Weather">
+    <insert id="insert" parameterType="com.econ.springboot.tdengine.demo.mybatis.domain.Weather">
         <!--insert into demo.t#{groupId} (ts, temperature, humidity) values (#{ts}, ${temperature}, ${humidity})-->
         insert into demo.t#{groupId} (ts, temperature, humidity) values (now, ${temperature}, ${humidity})
     </insert>
@@ -80,7 +80,7 @@
         select count(*) from demo.weather
     </select>
 
-    <resultMap id="avgResultSet" type="com.taosdata.example.springboot.tdengine.demo.domain.Weather">
+    <resultMap id="avgResultSet" type="com.econ.springboot.tdengine.demo.mybatis.domain.Weather">
         <id column="ts" jdbcType="TIMESTAMP" property="ts"/>
         <result column="avg(temperature)" jdbcType="FLOAT" property="temperature"/>
         <result column="avg(humidity)" jdbcType="FLOAT" property="humidity"/>

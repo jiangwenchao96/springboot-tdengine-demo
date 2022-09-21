@@ -1,6 +1,6 @@
-package com.taosdata.example.springboot.tdengine.demo.dao;
+package com.econ.springboot.tdengine.demo.mybatis.dao;
 
-import com.taosdata.example.springboot.tdengine.demo.domain.Weather;
+import com.econ.springboot.tdengine.demo.mybatis.domain.Weather;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

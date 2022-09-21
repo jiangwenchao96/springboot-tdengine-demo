@@ -1,4 +1,4 @@
-package com.taosdata.example.springboot.tdengine.demo.domain;
+package com.econ.springboot.tdengine.demo.mybatis.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

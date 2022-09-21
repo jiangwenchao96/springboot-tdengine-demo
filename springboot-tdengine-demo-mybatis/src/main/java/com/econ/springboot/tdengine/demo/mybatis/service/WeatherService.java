@@ -1,7 +1,7 @@
-package com.taosdata.example.springboot.tdengine.demo.service;
+package com.econ.springboot.tdengine.demo.mybatis.service;
 
-import com.taosdata.example.springboot.tdengine.demo.domain.Weather;
-import com.taosdata.example.springboot.tdengine.demo.dao.WeatherMapper;
+import com.econ.springboot.tdengine.demo.mybatis.dao.WeatherMapper;
+import com.econ.springboot.tdengine.demo.mybatis.domain.Weather;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;

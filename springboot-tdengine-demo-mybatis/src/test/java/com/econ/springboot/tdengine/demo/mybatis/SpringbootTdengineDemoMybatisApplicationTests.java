@@ -1,8 +1,8 @@
-package com.taosdata.example.springboot.tdengine.demo;
+package com.econ.springboot.tdengine.demo.mybatis;
 
-import com.taosdata.example.springboot.tdengine.demo.dao.WeatherMapper;
-import com.taosdata.example.springboot.tdengine.demo.domain.Weather;
-import com.taosdata.example.springboot.tdengine.demo.service.WeatherService;
+import com.econ.springboot.tdengine.demo.mybatis.dao.WeatherMapper;
+import com.econ.springboot.tdengine.demo.mybatis.domain.Weather;
+import com.econ.springboot.tdengine.demo.mybatis.service.WeatherService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -12,16 +12,9 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * @author jwc
- * @date 2022/09/20
- */
 @SpringBootTest
-public class WeatherServiceTest {
-
+class SpringbootTdengineDemoMybatisApplicationTests {
     @Resource
     WeatherService weatherService;
     @Resource

@@ -12,6 +12,9 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @SpringBootTest
 class SpringbootTdengineDemoMybatisApplicationTests {
@@ -54,5 +57,37 @@ class SpringbootTdengineDemoMybatisApplicationTests {
         long end = System.currentTimeMillis();
         System.out.println("count: " + count);
         System.out.println("插入数据用时: " + (end-start));
+    }
+
+    /**
+     * 测试，使用线程池批量插入
+     */
+    @Test
+    void testInsertByThreadPoolTask() throws ExecutionException, InterruptedException {
+        for(int i = 0;i < 20;i++) {
+            Future<Long> submit = threadPoolTaskExecutor.submit(new BatchInsertTask());
+        }
+    }
+
+    class BatchInsertTask implements Callable<Long> {
+        @Override
+        public Long call() throws Exception {
+            long ts = System.currentTimeMillis();
+            long thirtySec = 1000 * 30;
+            List<Weather> list = new LinkedList();
+            Weather weather = null;
+            for (int i = 0; i < 10000; i++) {
+                weather = new Weather(new Timestamp(ts + (thirtySec * i)), 30 * random.nextFloat(), random.nextInt(100));
+                weather.setLocation(locations[random.nextInt(locations.length)]);
+                weather.setGroupId(i % locations.length);
+                list.add(weather);
+            }
+            long start = System.currentTimeMillis();
+            weatherMapper.insertBatch(list);
+            long end = System.currentTimeMillis();
+            System.out.println("插入数据用时: " + (end-start));
+            return end-start;
+        }
+        
     }
 }

@@ -18,6 +18,7 @@
 
     <modules>
         <module>springboot-tdengine-demo-mybatis</module>
+        <module>springboot-tdengine-demo-mybatis-plus</module>
     </modules>
 
     <properties>
@@ -25,6 +26,8 @@
         <taos.jdbcdriver.version>2.0.38</taos.jdbcdriver.version>
         <mybatis.starter.version>2.1.1</mybatis.starter.version>
         <druid.starter.version>1.1.17</druid.starter.version>
+        <lombok.version>1.18.24</lombok.version>
+        <mybatis.plus.boot.starter.version>3.5.1</mybatis.plus.boot.starter.version>
     </properties>
 
     <dependencyManagement>
@@ -43,6 +46,16 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.boot.starter.version}</version>
             </dependency>
         </dependencies>
 

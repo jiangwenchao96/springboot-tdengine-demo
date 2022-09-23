@@ -13,8 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 @SpringBootTest
 class SpringbootTdengineDemoMybatisApplicationTests {
@@ -35,8 +33,14 @@ class SpringbootTdengineDemoMybatisApplicationTests {
 
     @Test
     void test2() {
-        List<Weather> select = weatherMapper.select(10L, 1L);
-        select.forEach(t -> System.out.println(t.toString()));
+        List<Weather> select = weatherMapper.select(10L, 8000000L);
+        select.forEach(System.out::println);
+    }
+
+    @Test
+    void testGetSubTables() {
+        List<String> subTables = weatherMapper.getSubTables();
+        subTables.forEach(System.out::println);
     }
 
     @Test
@@ -63,15 +67,18 @@ class SpringbootTdengineDemoMybatisApplicationTests {
      * 测试，使用线程池批量插入
      */
     @Test
-    void testInsertByThreadPoolTask() throws ExecutionException, InterruptedException {
-        for(int i = 0;i < 20;i++) {
-            Future<Long> submit = threadPoolTaskExecutor.submit(new BatchInsertTask());
+    void testInsertByThreadPoolTask(){
+        long start = System.currentTimeMillis();
+        for(int i = 0;i < 10000;i++) {
+            threadPoolTaskExecutor.submit(new BatchInsertTask());
         }
+        long end = System.currentTimeMillis();
+        System.out.println("总用时：" + (end-start));
     }
 
-    class BatchInsertTask implements Callable<Long> {
+    class BatchInsertTask implements Callable<Long>{
         @Override
-        public Long call() throws Exception {
+        public Long call() {
             long ts = System.currentTimeMillis();
             long thirtySec = 1000 * 30;
             List<Weather> list = new LinkedList();
@@ -86,8 +93,34 @@ class SpringbootTdengineDemoMybatisApplicationTests {
             weatherMapper.insertBatch(list);
             long end = System.currentTimeMillis();
             System.out.println("插入数据用时: " + (end-start));
-            return end-start;
+            return end - start;
         }
-        
+    }
+
+    /**
+     * 单线程插入1亿条数据，
+     * 循环1万次，每次批量插入10000条数据
+     */
+    @Test
+    void testInsert(){
+        long totalTime = 0;
+        for(int j = 0;j < 1;j++) {
+            long ts = System.currentTimeMillis();
+            long thirtySec = 1000 * 30;
+            List<Weather> list = new LinkedList();
+            Weather weather = null;
+            for (int i = 0; i < 10000; i++) {
+                weather = new Weather(new Timestamp(ts + (thirtySec * i)), 30 * random.nextFloat(), random.nextInt(100));
+                weather.setLocation(locations[random.nextInt(locations.length)]);
+                weather.setGroupId(i % locations.length);
+                list.add(weather);
+            }
+            long start = System.currentTimeMillis();
+            weatherMapper.insertBatch(list);
+            long end = System.currentTimeMillis();
+            System.out.println("插入数据用时: " + (end-start));
+            totalTime = totalTime + end - start;
+        }
+        System.out.println("插入数据总用时：" + totalTime);
     }
 }

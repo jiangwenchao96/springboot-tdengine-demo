@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://econ:Econ0571@192.168.87.191:27017/powercloud

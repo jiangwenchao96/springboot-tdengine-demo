@@ -33,7 +33,7 @@ class SpringbootTdengineDemoMybatisApplicationTests {
 
     @Test
     void test2() {
-        List<Weather> select = weatherMapper.select(10L, 8000000L);
+        List<Weather> select = weatherMapper.select(10L, 5000000L);
         select.forEach(System.out::println);
     }
 
@@ -104,7 +104,7 @@ class SpringbootTdengineDemoMybatisApplicationTests {
     @Test
     void testInsert(){
         long totalTime = 0;
-        for(int j = 0;j < 1;j++) {
+        for(int j = 0;j < 1000;j++) {
             long ts = System.currentTimeMillis();
             long thirtySec = 1000 * 30;
             List<Weather> list = new LinkedList();
@@ -119,7 +119,7 @@ class SpringbootTdengineDemoMybatisApplicationTests {
             weatherMapper.insertBatch(list);
             long end = System.currentTimeMillis();
             System.out.println("插入数据用时: " + (end-start));
-            totalTime = totalTime + end - start;
+            totalTime = totalTime + (end - start);
         }
         System.out.println("插入数据总用时：" + totalTime);
     }

@@ -19,6 +19,7 @@
     <modules>
         <module>springboot-tdengine-demo-mybatis</module>
         <module>springboot-tdengine-demo-mybatis-plus</module>
+        <module>springboot-tdengine-demo-mongodb</module>
     </modules>
 
     <properties>

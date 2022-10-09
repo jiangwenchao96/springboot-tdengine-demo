@@ -27,6 +27,12 @@ class SpringbootTdengineDemoMybatisApplicationTests {
     private String[] locations = {"北京", "上海", "广州", "深圳", "天津"};
 
     @Test
+    void test() {
+        List<Weather> weathers = weatherMapper.selectAll();
+        System.out.println(weathers.size());
+    }
+
+    @Test
     void test1() {
         weatherService.init();
     }
@@ -104,12 +110,12 @@ class SpringbootTdengineDemoMybatisApplicationTests {
     @Test
     void testInsert(){
         long totalTime = 0;
-        for(int j = 0;j < 1000;j++) {
+        for(int j = 0;j < 10000;j++) {
             long ts = System.currentTimeMillis();
             long thirtySec = 1000 * 30;
             List<Weather> list = new LinkedList();
             Weather weather = null;
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 10; i++) {
                 weather = new Weather(new Timestamp(ts + (thirtySec * i)), 30 * random.nextFloat(), random.nextInt(100));
                 weather.setLocation(locations[random.nextInt(locations.length)]);
                 weather.setGroupId(i % locations.length);

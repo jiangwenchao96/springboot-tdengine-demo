@@ -27,12 +27,12 @@ class SpringbootTdengineDemoMongodbApplicationTests {
     @Test
     void testInsert() {
         long totalTime = 0;
-        for(int j = 0;j < 1000;j++) {
+        for(int j = 0;j < 1;j++) {
             long ts = System.currentTimeMillis();
             long thirtySec = 1000 * 30;
             List<Weather> list = new LinkedList();
             Weather weather = null;
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 1; i++) {
                 weather = new Weather();
                 weather.setTs(new Timestamp(ts + (thirtySec * i)));
                 weather.setTemperature(30 * random.nextFloat());

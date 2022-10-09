@@ -1,6 +1,5 @@
-package com.econ.springboot.tdengine.demo.mybatis.dao;
-
-import com.econ.springboot.tdengine.demo.mybatis.domain.Weather;
+package com.econ.springboot.tdengine.demo.multi.datasource.dao.tdengine;
+import com.econ.springboot.tdengine.demo.multi.datasource.domain.Weather;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

@@ -20,6 +20,7 @@
         <module>springboot-tdengine-demo-mybatis</module>
         <module>springboot-tdengine-demo-mybatis-plus</module>
         <module>springboot-tdengine-demo-mongodb</module>
+        <module>springboot-tdengine-demo-multi-datasource</module>
     </modules>
 
     <properties>
@@ -29,6 +30,7 @@
         <druid.starter.version>1.1.17</druid.starter.version>
         <lombok.version>1.18.24</lombok.version>
         <mybatis.plus.boot.starter.version>3.5.1</mybatis.plus.boot.starter.version>
+        <mysql.connector.java>8.0.26</mysql.connector.java>
     </properties>
 
     <dependencyManagement>
@@ -57,6 +59,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.java}</version>
             </dependency>
         </dependencies>
 

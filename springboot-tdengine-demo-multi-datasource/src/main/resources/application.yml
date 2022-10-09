@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    tdengine-server:
+      driverClassName: com.taosdata.jdbc.TSDBDriver
+      jdbc-url: jdbc:TAOS://192.168.87.139:6030/demo?charset=UTF-8&locale=en_US.UTF-8&timezone=UTC-8
+      username: root
+      password: taosdata
+      type: com.zaxxer.hikari.HikariDataSource      # Hikari连接池的设置
+      hikari:
+        minimum-idle: 5                 #最小连接
+        maximum-pool-size: 15        #最大连接
+        auto-commit: true        #自动提交
+        idle-timeout: 30000        #最大空闲时常
+        pool-name: TDengineHikariCP        #连接池名
+        max-lifetime: 1800000        #最大生命周期
+        connection-timeout: 30000        #连接超时时间
+
+    mysql-server:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.86.222:3306/node_econ?useSSL=false&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+      username: root
+      password: Econ0571
+      type: com.zaxxer.hikari.HikariDataSource      # Hikari连接池的设置
+      hikari:
+        minimum-idle: 5                 #最小连接
+        maximum-pool-size: 15        #最大连接
+        auto-commit: true        #自动提交
+        idle-timeout: 30000        #最大空闲时常
+        pool-name: DatebookHikariCP        #连接池名
+        max-lifetime: 1800000        #最大生命周期
+        connection-timeout: 30000        #连接超时时间
+        connection-test-query: SELECT 1        #心跳检测
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
